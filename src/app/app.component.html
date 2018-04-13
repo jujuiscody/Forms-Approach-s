@@ -1,14 +1,30 @@
-
 <div class="container container-default">
-  <form>
+  <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+    <div id="group" ngModelGroup="primary">
     <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" placeholder="Enter name" class="form-control">
+      <label for="Username">UserName:</label>
+      <input type="text" id="UserName" placeholder="Enter name" 
+      class="form-control" ngModel name="UserName" required>
+      <p *ngIf="userForm.touched && userForm.invalid">Name is Mandatory {{userForm.Errors}}</p>
     </div>
     <div class="form-group">
-        <label for="Email">Email:</label>
-        <input type="Email" placeholder="Enter Email" class="form-control">
-      </div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter Email" 
+      class="form-control" ngModel name="email" required email #email="ngModel"
+      [ngModel]="defaultMail">
+      <span class="help-block" *ngIf="email.pristine && email.invalid">Enter Correct Mail Address</span>
+    </div>
+    </div>
+    <div class="radio" *ngFor="let gender of genders">
+      <label>
+        <input type="radio"  name="gender"  [value]="gender">{{gender}}
+      </label>
+    </div>
+    <div class=form-group>
+      <label for="address">Address:</label>
+    <input type="text" class="form-control" ngModel name="address"
+    [(ngModel)]="address">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!userForm.valid">Submit</button>
   </form>
 </div>
-<button class="btn btn-primary" type="button">Submit</button>

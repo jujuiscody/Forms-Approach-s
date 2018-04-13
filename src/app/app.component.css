@@ -1,0 +1,6 @@
+
+input.ng-invalid.ng-touched, button:disabled{
+    border: 2px solid red;
+    background-color: whitesmoke;
+    color:black;
+}
